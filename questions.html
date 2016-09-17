@@ -6,15 +6,18 @@
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script>
 var ref= new Firebase("https://classm8s.firebaseio.com/");
-var questionsRef = ref.child("Students");
+var questionsRef = ref.child("StudentQuestions");
 
 function createQuestionnaire(){
-var className=document.getElementById("className").value;
-var classProfessor=document.getElementById("classProfessor").value;
-var NewClassRef=questionsRef.push();
+var studentName=document.getElementById("studentName").value;
+var que1=document.getElementById("que1").value;
+var que2=document.getElementById("que2").value;
+var que3=document.getElementById("que3").value;
+var NewQuestRef=questionsRef.push();
 
-NewClassRef.set({class:className, professor:classProfessor});
-var postID = NewClassRef.key();
+NewQuestRef.set({name: studentName, ques1: que1, ques2: que2, ques3: que3});
+var postQuestID = NewQuestRef.key();
+document.getElementById("studentName").value = "";
 document.getElementById("que1").value = "";
 document.getElementById("que2").value = "";
 document.getElementById("que3").value = "";
@@ -24,7 +27,9 @@ document.getElementById("que3").value = "";
 </head>
 <body>
 <body>
-<h1>Add Classes</h1>
+<h1>Awenser Questions</h1>
+<p> <INPUT NAME="Name" SIZE="48" id="studentName" class="inputs" placeholder="student's name"></p>
+
 <p> <select id="que1" placeholder="responses">
   <option value="response1">response1</option>
   <option value="response2">response2</option>
@@ -45,6 +50,7 @@ document.getElementById("que3").value = "";
   <option value="response3">response3</option>
   <option value="response4">response4</option>
 </select></p>
+
 <div><input class="button" type="button" value="Submit" onclick="createQuestionnaire();"></div>
 
 </body>
