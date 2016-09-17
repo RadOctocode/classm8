@@ -1,0 +1,17 @@
+<script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	$( "#test" ).css( "border", "3px solid red" );
+    
+    $.ajax({url: "https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA16&subject=PHYS", success: function(result){
+        var res = result;
+        console.log(result);
+        
+        
+        console.log("acadCareer:");
+        console.log(res.data.classes[0].acadCareer);
+    }});
+    
+    
+  console.log("test");
+</script>

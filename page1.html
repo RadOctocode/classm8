@@ -12,10 +12,10 @@ function createClass(){
 var className=document.getElementById("className").value;
 var classProfessor=document.getElementById("classProfessor").value;
 var classSubject=document.getElementById("classSubject").value;
-var classScore=0;
+//var classScore=0;
 var NewClassRef=usersRef.push();
 
-NewClassRef.set({class:className, professor:classProfessor, subject:classSubject, score:classScore});
+NewClassRef.set({class:className, professor:classProfessor, subject:classSubject});
 var postClassID = NewClassRef.key();
 document.getElementById("className").value = "";
 document.getElementById("classProfessor").value = "";
