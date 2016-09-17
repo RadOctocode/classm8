@@ -4,41 +4,8 @@
 <style>
 </style>
 
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCZuHjcXITLijh_JYPASlifYUfS-cRmQUk",
-    authDomain: "classm8s.firebaseapp.com",
-    databaseURL: "https://classm8s.firebaseio.com",
-    storageBucket: "firebase-classm8s.appspot.com",
-    messagingSenderId: "990016860248"
-  };
-
-  firebase.initializeApp(config);
-</script>
-
-<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-<script>
-var ref= new Firebase("https://classm8s.firebaseio.com/");
-var questionsRef = ref.child("StudentQuestions");
-
-function createQuestionnaire(){
-var studentName=document.getElementById("studentName").value;
-var que1=document.getElementById("que1").value;
-var que2=document.getElementById("que2").value;
-var que3=document.getElementById("que3").value;
-var NewQuestRef=questionsRef.push();
-
-NewQuestRef.set({name: studentName, ques1: que1, ques2: que2, ques3: que3});
-var postQuestID = NewQuestRef.key();
-document.getElementById("studentName").value = "";
-document.getElementById("que1").value = "";
-document.getElementById("que2").value = "";
-document.getElementById("que3").value = "";
-
-}
-</script>
+<script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+<script src="local vars.js"></script>
 </head>
 <body>
 <body>
@@ -50,27 +17,13 @@ document.getElementById("que3").value = "";
 <p> <select id="que1" placeholder="responses">
   <option value="response1">Computer Science</option>
   <option value="response2">Mechanical Engineer</option>
-  <option value="response3">Electrical or Computer Engineer</option>
-  <option value="response4">Applied and engineering physics</option>
+  <option value="response3">Electrical and Computer Engineer</option>
+  <option value="response4">Applied and Engineering Physics</option>
 </select></p>
 
-<!--<p>What subjects are you interested in taking courses in?</p>
-<p> <select id="que2" placeholder="responses">
-  <option value="response1">response1</option>
-  <option value="response2">response2</option>
-  <option value="response3">response3</option>
-  <option value="response4">response4</option>
-</select></p>-->
+<div id="printOut"></div>
 
-<p>What subjects are you interested in taking courses in?</p>
-<p> <select id="que3" placeholder="responses">
-  <option value="response1">response1</option>
-  <option value="response2">response2</option>
-  <option value="response3">response3</option>
-  <option value="response4">response4</option>
-</select></p>
-
-<div><input class="button" type="button" value="Submit" onclick="createQuestionnaire();" a href="page1.html"></div>
+<div><input class="button" type="button" value="Submit" onclick="createQuestionnaire()" a href="page1.html"></div>
 
 </body>
 </html>
