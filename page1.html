@@ -13,15 +13,21 @@ var className=document.getElementById("className").value;
 var classProfessor=document.getElementById("classProfessor").value;
 var NewClassRef=usersRef.push();
 
+NewClassRef.set({class:className, professor:classProfessor});
+var postID = NewClassRef.key();
+document.getElementById("className").value = "";
+document.getElementById("classProfessor").value = "";
+
+
 }
 </script>
 </head>
 <body>
 <body>
 <h1>Sign Up</h1>
-<p> <INPUT NAME="Class" SIZE="48" id="className" class="inputs" placeholder="username"></p>
-<p> <INPUT NAME="Professor" SIZE="48" id="classProfessor" class="inputs" placeholder="Password"></p>
-<div><input class="button" type="button" value="Submit" onclick="create();"></div>
+<p> <INPUT NAME="Class" SIZE="48" id="className" class="inputs" placeholder="Class"></p>
+<p> <INPUT NAME="Professor" SIZE="48" id="classProfessor" class="inputs" placeholder="Professor"></p>
+<div><input class="button" type="button" value="Submit" onclick="createClass();"></div>
 
 </body>
 </html>
