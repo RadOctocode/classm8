@@ -53,22 +53,22 @@ $.ajax({url: "https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA1
 engriCourse=new course("Engri","1001","EngriCourse","1");
 
 var MathList =[];
+var classesToTake =[];
 switch(que1){
 
           case("Mechanical Engineer"):
           case("Electrical and Computer Engineer"):
           case("Applied and Engineering Physics"):
              //All First Year Engineers
-              for(i = 0; i<coursesMath.length; i++){
+              /**for(i = 0; i<coursesMath.length; i++){
                 if ((coursesMath[i].aTitle.search("for Engineers") > -1) && (coursesMath[i].aCatalogNum%2000>=1000))
                 	MathList.push(coursesMath[i].aSubject+" "+coursesMath[i].aCatalogNum+" "+coursesMath[i].aTitle);   
-              }
+              }**/
 
               document.getElementById('printOut').appendChild(makeUL(MathList));
-                console.log(oChem.data.classes[6].subject+" "+oChem.data.classes[6].catalogNbr)
+                classesToTake.push(oChem.data.classes[6].subject+" "+oChem.data.classes[6].catalogNbr+" "+oChem.data.classes[6].titleLong)
                 break;
       }
-
         var credit = new Set();
      if(document.getElementById('chk1').checked)
      	credit.add("CHEM2090");
@@ -80,41 +80,42 @@ switch(que1){
      	credit.add("PHYS1112");
      if(document.getElementById('chk6').checked)
      	credit.add("CS1110");
-        
      if (credit.has(oMath.data.classes[10].aCatalogNum)){ 
-         console.log(oMath.data.classes[11].subject+" "+oMath.data.classes[11].catalogNbr+" "+oMath.data.classes[11].titleLong);     }  
+         classesToTake.push(oMath.data.classes[11].subject+" "+oMath.data.classes[11].catalogNbr+" "+oMath.data.classes[11].titleLong);     
+     }
+
      else{
-          console.log(oMath.data.classes[10].subject+" "+oMath.data.classes[10].catalogNbr+" "+oMath.data.classes[10].titleLong);
+          classesToTake.push(oMath.data.classes[10].subject+" "+oMath.data.classes[10].catalogNbr+" "+oMath.data.classes[10].titleLong);
 	}
             
         
       if(credit.has(oCs.data.classes[0].catalogNbr) || credit.has(oCs.data.classes[1].catalogNbr)){
          for(i = 0; i<41; i++){
-            console.log(engri.data.classes[i].subject+" "+engri.data.classes[i].catalogNbr+" "+engri.data.classes[i].titleLong); //shows ENGRI options if u have CS credit
+            classesToTake.push(engri.data.classes[i].subject+" "+engri.data.classes[i].catalogNbr+" "+engri.data.classes[i].titleLong); //shows ENGRI options if u have CS credit
        		 }
             }
             
-       else{ console.log(oCs.data.classes[0].subject+" "+oCs.data.classes[0].catalogNbr+" "+oCs.data.classes[0].titleLong); //shows CS 1110,1112 if no CS credit
-            console.log(oCs.data.classes[1].subject+" "+oCs.data.classes[1].catalogNbr+" "+oCs.data.classes[1].titleLong);
+       else{ classesToTake.push(oCs.data.classes[0].subject+" "+oCs.data.classes[0].catalogNbr+" "+oCs.data.classes[0].titleLong); //shows CS 1110,1112 if no CS credit
+            classesToTake.push(oCs.data.classes[1].subject+" "+oCs.data.classes[1].catalogNbr+" "+oCs.data.classes[1].titleLong);
      		}
 
    if(credit.has(oChem.data.classes[6].catalogNbr)){ //chem priority over phys
        if(credit.has(oPhys.data.classes[2].catalogNbr) && credit.has(oPhys.data.classes[8].catalogNbr)) {
-			console.log("Take a fun class")
+			classesToTake.push("Take a fun class")
 		}
  	else if(credit.has(oPhys.data.classes[2].catalogNbr)){
-			console.log(oPhys.data.classes[8].subject+" "+oPhys.data.classes[8].catalogNbr+" "+oPhys.data.classes[8].titleLong);
+			classesToTake.push(oPhys.data.classes[8].subject+" "+oPhys.data.classes[8].catalogNbr+" "+oPhys.data.classes[8].titleLong);
         }
      else if(credit.has(oPhys.data.classes[8].catalogNbr)){
-            console.log(oPhys.data.classes[2].subject+" "+oPhys.data.classes[2].catalogNbr+" "+oPhys.data.classes[2].titleLong);
-			console.log(oPhys.data.classes[3].subject+" "+oPhys.data.classes[3].catalogNbr+" "+oPhys.data.classes[3].titleLong); } 
+            classesToTake.push(oPhys.data.classes[2].subject+" "+oPhys.data.classes[2].catalogNbr+" "+oPhys.data.classes[2].titleLong);
+			classesToTake.push(oPhys.data.classes[3].subject+" "+oPhys.data.classes[3].catalogNbr+" "+oPhys.data.classes[3].titleLong); } 
 		}
 
-    else{   console.log(oChem.data.classes[6].subject+" "+oChem.data.classes[6].catalogNbr+" "+oChem.data.classes[6].titleLong);
-            console.log(oChem.data.classes[7].subject+" "+oChem.data.classes[7].catalogNbr+" "+oChem.data.classes[7].titleLong);
+    else{   classesToTake.push(oChem.data.classes[6].subject+" "+oChem.data.classes[6].catalogNbr+" "+oChem.data.classes[6].titleLong);
+            classesToTake.push(oChem.data.classes[7].subject+" "+oChem.data.classes[7].catalogNbr+" "+oChem.data.classes[7].titleLong);
 	 }
             
-  
+  document.getElementById('printOut').appendChild(makeUL(classesToTake));
     }})
     }})
     }})
