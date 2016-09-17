@@ -10,20 +10,117 @@
 <body>
 <body>
 <h1>Welcome to Classm8s!</h1>
-<h2>Please fill out the questionnaire below to continue:</h2>
-<p> <INPUT NAME="Name" SIZE="48" id="studentName" class="inputs" placeholder="student's name"></p>
+<h2>Please fill out the question below to continue:</h2>
 
 <p>What is your major?</p>
 <p> <select id="que1" placeholder="responses">
-  <option value="response1">Computer Science</option>
-  <option value="response2">Mechanical Engineer</option>
-  <option value="response3">Electrical and Computer Engineer</option>
-  <option value="response4">Applied and Engineering Physics</option>
+  <option value="Computer Science">Computer Science</option>
+  <option value="Mechanical Engineer">Mechanical Engineer</option>
+  <option value="Electrical and Computer Engineer">Electrical and Computer Engineer</option>
+  <option value="Applied and Engineering Physics">Applied and Engineering Physics</option>
 </select></p>
 
-<div id="printOut"></div>
+<p>What year are you?</p>
+ <select id="que2" placeholder="responses">
+  <option value="incoming freshmen">incoming freshmen</option>
+  <option value="incoming sophmore">incoming sophmore</option>
+</select></p>
 
-<div><input class="button" type="button" value="Submit" onclick="createQuestionnaire()" a href="page1.html"></div>
+   <h2> Credit Outside of Cornell </h2>
+<p> If you have recieved a 5 on any of the 6 AP classes below then you may receieve Cornell credit: </p>
+
+<form>
+  AP Credit:
+  <label><input type="checkbox" id="chk1" name="Chem 2090"> AP Chemistry</label>
+  
+  <label><input type="checkbox" id="chk2" name ="Phys 1112"> AP Physics C Mech</label>
+
+  <label><input type="checkbox" id="chk3" name="Phys 2213"> AP Physics C EM</label>
+
+  <label><input type="checkbox" id="chk4" name="Phys 1112"> AP Physics B </label>
+
+  <label><input type="checkbox"
+id="chk5" name="Math 1910"> AP Calculus BC</label>
+
+  <label><input type="checkbox"
+id="chk6" name="CS 1110"> AP Computer Science A</label>
+ 
+  <p>
+  </p>
+</form>
+
+Incoming Sophomores/Current Freshmen
+<form>
+  <p>
+ Math:
+  <label><input type="checkbox"
+id="chk7" name="MATH1910"> MATH 1910</label>
+
+ <label><input type="checkbox"
+id="chk8" name="MATH1920"> MATH 1920</label>
+ 
+ <label><input type="checkbox"
+id="chk9" name="MATH2930"> MATH 2930</label>
+    
+<label><input type="checkbox"
+id="chk9" name="MATH2940"> MATH 2940</label>
+  </p>
+  
+  <p>
+    Physics:
+ <label><input type="checkbox"
+id="chk10" name="PHYS1112"> PHYS 1112</label>
+ <label><input type="checkbox"
+id="chk11" name="PHYS1116"> PHYS 1116</label>
+    <label><input type="checkbox"
+id="chk12" name="PHYS2213"> PHYS 2213</label>
+    <label><input type="checkbox"
+id="chk13" name="PHYS2214"> PHYS 2214</label>
+  </p>
+  <p> CS:
+ <label><input type="checkbox"
+id="chk14" name="CS1110"> CS 1110</label>
+ 
+ <label><input type="checkbox"
+id="chk15" name="CS 1112"> CS 1112</label>
+
+     <label><input type="checkbox"
+id="chk16" name="CS 2110"> CS 2110</label>
+  
+    <label><input type="checkbox"
+id="chk17" name="CS 1112"> CS 2112</label>
+    
+    <label><input type="checkbox"
+id="chk18" name="CS 2850"> CS 2850</label>
+    
+    <label><input type="checkbox"
+id="chk19" name="CS 3310"> CS 3310</label>
+    
+    <label><input type="checkbox"
+id="chk20" name="CS 3410"> CS 3410</label>
+    
+  </p>
+  <p> Chem
+    <label><input type="checkbox"
+id="chk21" name="CHEM2090"> CHEM 2090</label>
+     <label><input type="checkbox"
+id="chk22" name="CHEM2150"> CHEM 2150</label>
+  </p>
+    <p> ENG:
+    <label><input type="checkbox"
+id="chk23" name="ENGRI"> ENGRI</label>
+  </p>
+   <p>
+  </p>
+</form>
+ 
+
+
+
+
+<div id="printOut"></div>
+<div></div>
+<div><input class="button" type="button" value="Submit" onclick="createQuestionnaire()" ></div>
 
 </body>
 </html>
