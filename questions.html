@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+</style>
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script>
+var ref= new Firebase("https://classm8s.firebaseio.com/");
+var questionsRef = ref.child("Students");
+
+function createQuestionnaire(){
+var className=document.getElementById("className").value;
+var classProfessor=document.getElementById("classProfessor").value;
+var NewClassRef=questionsRef.push();
+
+NewClassRef.set({class:className, professor:classProfessor});
+var postID = NewClassRef.key();
+document.getElementById("que1").value = "";
+document.getElementById("que2").value = "";
+document.getElementById("que3").value = "";
+
+}
+</script>
+</head>
+<body>
+<body>
+<h1>Add Classes</h1>
+<p> <select id="que1" placeholder="responses">
+  <option value="response1">response1</option>
+  <option value="response2">response2</option>
+  <option value="response3">response3</option>
+  <option value="response4">response4</option>
+</select></p>
+
+<p> <select id="que2" placeholder="responses">
+  <option value="response1">response1</option>
+  <option value="response2">response2</option>
+  <option value="response3">response3</option>
+  <option value="response4">response4</option>
+</select></p>
+
+<p> <select id="que3" placeholder="responses">
+  <option value="response1">response1</option>
+  <option value="response2">response2</option>
+  <option value="response3">response3</option>
+  <option value="response4">response4</option>
+</select></p>
+<div><input class="button" type="button" value="Submit" onclick="createQuestionnaire();"></div>
+
+</body>
+</html>
