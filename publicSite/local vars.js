@@ -13,7 +13,7 @@ function course(aSubject,aCatalogNum,aTitle,aLevel){
 		this.hasCredit =false;
 }
 
-
+console.log(que2);
 
 $.ajax({url: "https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA16&subject=MATH", success: function(result){
         var oMath = result;
@@ -127,8 +127,160 @@ switch(que1){
     else{
         classesToTake.push(coursesCs[0].aSubject+" "+coursesCs[0].aCatalogNum+" "+coursesCs[0].aTitle);
     }
-         
+    if(que2=="incoming freshmen"){ 
     document.getElementById('printOut').appendChild(makeUL(classesToTake));
+    }//changed here
+
+    //Beginning of Sophmore credits evaluation
+     var recCourse =[];
+     var free=0;
+
+    //Math
+     if(document.getElementById('chk7').checked){
+     	recCourse.push(coursesMath[0+1]);
+	coursesMath[0].hasCredit="True";
+     }
+
+     if(document.getElementById('chk8').checked){
+	console.log("Currently in chk8");
+	recCourse.push(coursesMath[1+1]);
+	coursesMath[1].hasCredit="True";
+     }
+     if(document.getElementById('chk9').checked){
+     	recCourse.push(coursesMath[2+1]);
+	coursesMath[2].hasCredit="True";
+     }
+      if(document.getElementById('chk10').checked){
+     	free++;
+	coursesMath[3].hasCredit="True";
+     }
+
+     //Physics
+      if(document.getElementById('chk11').checked){
+     	recCourse.push(coursesPhys[0+1]);
+	coursesPhys[0].hasCredit="True";
+     }
+       if(document.getElementById('chk12').checked){
+     	recCourse.push(coursesPhys[1+1]);
+	coursesPhys[1].hasCredit="True";
+     }
+      if(document.getElementById('chk13').checked){
+     	recCourse.push(coursesPhys[2+1]);
+	coursesPhys[2].hasCredit="True";
+     }
+      if(document.getElementById('chk14').checked){
+     	free++;
+	coursesPhys[3].hasCredit="True";
+     }
+     //CS
+      if(document.getElementById('chk15').checked){
+     	recCourse.push(coursesCs[0+1]);
+	coursesCs[0].hasCredit="True";
+     }
+      if(document.getElementById('chk16').checked){
+     	recCourse.push(coursesCs[1+1]);
+	coursesCs[1].hasCredit="True";
+     }
+      if(document.getElementById('chk17').checked){
+     	recCourse.push(coursesCs[2+1]);
+	coursesCs[2].hasCredit="True";
+     }
+     if(document.getElementById('chk18').checked){
+     	recCourse.push(coursesCs[3+1]);
+	coursesCs[3].hasCredit="True";
+     }
+     if(document.getElementById('chk19').checked){
+     	recCourse.push(coursesCs[4+1]);
+	coursesCs[4].hasCredit="True";
+     }
+     if(document.getElementById('chk20').checked){
+     	recCourse.push(coursesCs[5+1]);
+	coursesCs[5].hasCredit="True";
+     }
+     if(document.getElementById('chk21').checked){
+     	free++;
+	coursesCs[6].hasCredit="True";
+     }
+     if(document.getElementById('chk22').checked){
+     	recCourse.push(coursesChem[0+1]);
+	coursesChem[0].hasCredit="True";
+     }
+     if(document.getElementById('chk23').checked){
+     	free++;
+	coursesChem[1].hasCredit="True";
+     }
+     if(document.getElementById('chk24').checked){
+     	engriCourse.hasCredit="True";
+     }
+
+     //check in each subject array if a credit has been recieved
+    for(i=0; i<free; i++){
+     for(i=coursesMath.length-1; i>-1; i--){
+	if(coursesMath[i].hasCredit){
+		     console.log(coursesMath.length-1);
+		     console.log(coursesMath[i].aTitle);
+		     recCourse.push(coursesMath[i]);
+	}
+     }
+    
+   
+     console.log('Now entering coursesPhys');
+     for(i=coursesPhys.length-1; i>-1; i--){
+	if(coursesPhys[i].hasCredit){
+		console.log(coursesPhys[i].aTitle);
+		     recCourse.push(coursesPhys[i]);
+	}
+     }
+     for(i=coursesCs.length-1; i>-1; i--){
+	if(coursesCs[i].hasCredit){
+		console.log(coursesCs[i].aTitle);	
+   		recCourse.push(coursesCs[i]);
+	}
+     }
+     for(i=coursesChem.length-1; i>-1; i--){
+	if(coursesChem[i].hasCredit)
+		     recCourse.push(coursesChem[i]);
+     }
+
+  
+
+ 
+     }
+	var recCourseArranged = [];
+     for(i=0; i<recCourse.length; i++){
+	     if(recCourse[i].aLevel<=1){
+		     console.log("Was true");
+		     recCourseArranged.push(recCourse[i]);
+	     }
+     }
+     for(i=0; i<recCourse.length; i++){
+	     if(recCourse[i].aLevel<=2){
+		     console.log("Was true");
+		     recCourseArranged.push(recCourse[i]);
+	     }
+     }	
+     for(i=0; i<recCourse.length; i++){
+	console.log("Was true");
+	     recCourseArranged.push(recCourse[i]);
+     }
+
+     console.log(recCourseArranged[0].aTitle);
+     console.log(recCourseArranged[1].aTitle);
+     console.log(recCourseArranged[2].aTitle);
+     console.log(recCourseArranged[3].aTitle);
+     
+
+
+
+     var recCourseString=[];
+     console.log(recCourse);
+     for(i=0; i<recCourseArranged.length; i++){
+	     recCourseString.push(recCourse[i].aSubject+recCourse[i].aCatalogNum+" "+recCourse[i].aTitle);
+        console.log(recCourseString);
+    }
+	if(que2=="incoming sophomore"){
+     	document.getElementById('printOut').appendChild(makeUL(recCourseString));
+	}
     }})
     }})
     }})
@@ -165,7 +317,6 @@ switch(que1){
     }})
     }});**/
     
-
 
 
   function makeUL(array) {
