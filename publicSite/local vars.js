@@ -1,4 +1,3 @@
-
 function createQuestionnaire(){
 
 var que1=document.getElementById("que1").value;
@@ -39,6 +38,7 @@ $.ajax({url: "https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA1
 			if(oChem.data.classes[i].catalogNbr == 2090 || oChem.data.classes[i].catalogNbr == 2150)
 				coursesChem.push(new course(oChem.data.classes[i].subject, oChem.data.classes[i].catalogNbr, oChem.data.classes[i].titleLong, oChem.data.classes[i].catalogNbr/1000.0 ));
 			coursesChem[0].aLevel =1;
+      console.log(coursesChem);
 		
 
 $.ajax({url: "https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA16&subject=CS", success: function(result){
@@ -66,61 +66,74 @@ switch(que1){
               }**/
 
               document.getElementById('printOut').appendChild(makeUL(MathList));
-                classesToTake.push(oChem.data.classes[6].subject+" "+oChem.data.classes[6].catalogNbr+" "+oChem.data.classes[6].titleLong)
-                break;
+                classesToTake.push(coursesChem[0].subject+" "+coursesChem[0].catalogNbr+" "+coursesChem[0].titleLong)
+               
       }
-        var credit = new Set();
-     if(document.getElementById('chk1').checked)
-     	credit.add("CHEM2090");
-     if(document.getElementById('chk2').checked)
-     	credit.add("PHYS1112");
-     if(document.getElementById('chk3').checked)
-     	credit.add("PHYS2213");
-     if(document.getElementById('chk4').checked && document.getElementById('chk5'))
-     	credit.add("PHYS1112");
-     if(document.getElementById('chk6').checked)
-     	credit.add("CS1110");
-     if (credit.has(oMath.data.classes[10].aCatalogNum)){ 
-         classesToTake.push(oMath.data.classes[11].subject+" "+oMath.data.classes[11].catalogNbr+" "+oMath.data.classes[11].titleLong);     
+        var credit = [];
+     if(document.getElementById('chk1').checked){
+     	credit.push("CHEM2090");
      }
+     if(document.getElementById('chk2').checked){
+     	credit.push("PHYS1112");
+     }
+     if(document.getElementById('chk3').checked){
+     	credit.push("PHYS2213");
+     }
+     if(document.getElementById('chk4').checked && document.getElementById('chk5')){
+     	credit.push("PHYS1112");
+     }
+     if(document.getElementById('chk5').checked){
+      credit.push("MATH1910")
+      console.log(credit);
+    }
+     if(document.getElementById('chk6').checked) {
+        credit.push("CS1110");
+     }
+     
+     if (inArray(credit,coursesMath[0].aSubject+coursesMath[0].aCatalogNum)==true){ 
+         classesToTake.push(coursesMath[1].aSubject+" "+coursesMath[1].aCatalogNum+" "+coursesMath[1].aTitle); 
+      
+     }//fine
 
      else{
-          classesToTake.push(oMath.data.classes[10].subject+" "+oMath.data.classes[10].catalogNbr+" "+oMath.data.classes[10].titleLong);
-	}
+          classesToTake.push(coursesMath[0].aSubject+" "+coursesMath[0].aCatalogNum+" "+coursesMath[0].aTitle);
+	   }//fine
             
-        
-      if(credit.has(oCs.data.classes[0].catalogNbr) || credit.has(oCs.data.classes[1].catalogNbr)){
-         for(i = 0; i<41; i++){
-            classesToTake.push(engri.data.classes[i].subject+" "+engri.data.classes[i].catalogNbr+" "+engri.data.classes[i].titleLong); //shows ENGRI options if u have CS credit
-       		 }
-            }
-            
-       else{ classesToTake.push(oCs.data.classes[0].subject+" "+oCs.data.classes[0].catalogNbr+" "+oCs.data.classes[0].titleLong); //shows CS 1110,1112 if no CS credit
-            classesToTake.push(oCs.data.classes[1].subject+" "+oCs.data.classes[1].catalogNbr+" "+oCs.data.classes[1].titleLong);
-     		}
 
-   if(credit.has(oChem.data.classes[6].catalogNbr)){ //chem priority over phys
-       if(credit.has(oPhys.data.classes[2].catalogNbr) && credit.has(oPhys.data.classes[8].catalogNbr)) {
-			classesToTake.push("Take a fun class")
-		}
- 	else if(credit.has(oPhys.data.classes[2].catalogNbr)){
-			classesToTake.push(oPhys.data.classes[8].subject+" "+oPhys.data.classes[8].catalogNbr+" "+oPhys.data.classes[8].titleLong);
-        }
-     else if(credit.has(oPhys.data.classes[8].catalogNbr)){
-            classesToTake.push(oPhys.data.classes[2].subject+" "+oPhys.data.classes[2].catalogNbr+" "+oPhys.data.classes[2].titleLong);
-			classesToTake.push(oPhys.data.classes[3].subject+" "+oPhys.data.classes[3].catalogNbr+" "+oPhys.data.classes[3].titleLong); } 
-		}
+    if(inArray(credit,coursesChem[0].aSubject+coursesChem[0].aCatalogNum)==true){ //chem priority over phys
+       if(inArray(credit,coursesPhys[0].aSubject+coursesPhys[0].aCatalogNum)==true && inArray(credit,coursesPhys[2].aSubject+coursesPhys[2].aCatalogNum)==true) {
+			   classesToTake.push("Take a fun class")
+		  }
+      else if(inArray(credit,coursesPhys[0].aSubject+coursesPhys[0].aCatalogNbum)==true){
+			   classesToTake.push(coursesPhys[2].aSubject+" "+coursesPhys[2].aCatalogNum+" "+coursesPhys[2].aTitle);
+          console.log(classesToTake);
+      }
 
-    else{   classesToTake.push(oChem.data.classes[6].subject+" "+oChem.data.classes[6].catalogNbr+" "+oChem.data.classes[6].titleLong);
-            classesToTake.push(oChem.data.classes[7].subject+" "+oChem.data.classes[7].catalogNbr+" "+oChem.data.classes[7].titleLong);
-	 }
-            
-  document.getElementById('printOut').appendChild(makeUL(classesToTake));
+      else if(inArray(credit,coursesPhys[2].aSubject+coursesPhys[2].aCatalogNum)==true){
+            classesToTake.push(coursesPhys[0].aSubject+" "+coursesPhys[0].aCatalogNum+" "+coursesPhys[0].aTitle);
+			      classesToTake.push(coursesPhys[1].aSubject+" "+coursesPhys[1].aCatalogNum+" "+coursesPhys[1].aTitle); 
+      }
+    }
+		
+
+    else{   classesToTake.push(coursesChem[0].aSubject+" "+coursesChem[0].aCatalogNum+" "+coursesChem[0].aTitle);
+            classesToTake.push(coursesChem[1].aSubject+" "+coursesChem[1].aCatalogNum+" "+coursesChem[1].aTitle);
+	   }
+
+    if(inArray(credit,coursesCs[0].aSubject+coursesCs[0].aCatalogNum)==true){
+        classesToTake.push(engriCourse.aSubject+" "+engriCourse.aCatalogNum+" "+engriCourse.aTitle);
+    }
+
+    else{
+        classesToTake.push(coursesCs[0].aSubject+" "+coursesCs[0].aCatalogNum+" "+coursesCs[0].aTitle);
+    }
+         
+    document.getElementById('printOut').appendChild(makeUL(classesToTake));
     }})
     }})
     }})
     }});//end of questionnaire
-
+}
 /*
 	$( "#test" ).css( "border", "3px solid white" );
     
@@ -154,7 +167,6 @@ switch(que1){
     
 
 
-}//end of function
 
   function makeUL(array) {
     // Create the list element:
@@ -173,4 +185,14 @@ switch(que1){
 
     // Finally, return the constructed list:
     return list;
+}
+
+function inArray(aRray,phrase){
+  console.log(aRray);
+  for (var i=0; i<aRray.length; i++){
+    if(aRray[i]==phrase){
+      return true;
+    }
+  }
+
 }
