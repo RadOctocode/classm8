@@ -260,20 +260,14 @@ switch(que1){
 	     }
      }	
      for(i=0; i<recCourse.length; i++){
-	console.log("Was true");
+	       console.log("Was true");
 	     recCourseArranged.push(recCourse[i]);
      }
 
-     console.log(recCourseArranged[0].aTitle);
-     console.log(recCourseArranged[1].aTitle);
-     console.log(recCourseArranged[2].aTitle);
-     console.log(recCourseArranged[3].aTitle);
-     
 
-
+     console.log(recCourseArranged);
 
      var recCourseString=[];
-     console.log(recCourse);
      for(i=0; i<recCourseArranged.length; i++){
 	     recCourseString.push(recCourse[i].aSubject+recCourse[i].aCatalogNum+" "+recCourse[i].aTitle);
         console.log(recCourseString);
